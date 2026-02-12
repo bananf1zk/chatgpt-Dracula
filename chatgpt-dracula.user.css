@@ -25,18 +25,19 @@
   }
 
   .dark {
-    --sidebar-surface-primary: #2b2640;
-    --bg-elevated-secondary: #2b2640;
+    --sidebar-surface-primary: #282a36;
+    --bg-elevated-secondary: #282a36;
     --main-surface-primary: #282a36;
     --main-surface-secondary: #151320;
     --main-surface-tertiary: #6272a4;
     --bg-primary: #282a36;
     --message-surface: #44475a;
+    --token-border-light: #44475a; /* Dracula currentLine */
   }
 
   /* Prompt Bar */
   .dark\:bg-\[\#303030\]:is(.dark *) {
-    background-color: #44475a;
+    background-color: #282a36;
   }
 
   /* Scroll Bars */
@@ -117,6 +118,63 @@
 
   /* Strings */
   :is(.light .dark, .dark) .hljs-string {
-    color: var(--yellow);
+    color: var(#282a36);
   }
 }
+@-moz-document domain("chatgpt.com") {
+  .bg-token-sidebar-surface-primary {
+    position: relative;
+  }
+
+  .bg-token-sidebar-surface-primary::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    padding: 1px;
+    border-radius: inherit;
+    background: linear-gradient(
+      to bottom,
+      #8be9fd,
+      #bd93f9
+    );
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+}
+@-moz-document domain("chatgpt.com") {
+
+  /* Prompt bar container */
+  .dark\:bg-\[\#303030\]:is(.dark *) {
+    position: relative;
+    border-radius: 12px; /* match UI rounding */
+  }
+
+  /* Gradient border */
+  .dark\:bg-\[\#303030\]:is(.dark *)::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    padding: 1px;
+    border-radius: inherit;
+
+    background: linear-gradient(
+      135deg,
+      #8be9fd,
+      #bd93f9,
+      #ff79c6
+    );
+
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+
+    pointer-events: none;
+  }
+}
+
